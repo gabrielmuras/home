@@ -1,0 +1,48 @@
+- name: Terminal Color
+  template:
+    src: "terminalColor.sh.j2"
+    dest: "/etc/profile.d/terminalColor.sh"
+
+- name: Aliases
+  template:
+    src: "alias.sh.j2"
+    dest: "/etc/profile.d/alias.sh"
+
+- name: Set hostname
+  command: hostnamectl set-hostname "{{ hostname }}"
+  become: yes
+ 
+- name: Terminal history
+  find:
+    path: /etc/profile.d/history.sh
+    file_type: file
+  register: check_file  
+
+- name: Create file
+  file:
+    path: /etc/profile.d/history.sh
+    state: touch
+    mode: '0644'
+    owner: root
+    group: root
+  register: check_file
+  become: yes
+  when:
+    check_file.examined == 0
+
+- name: Add history date format
+  blockinfile:
+    path: /etc/profile.d/history.sh
+    block: |
+      export HISTTIMEFORMAT="%d/%m/%y %T "
+  become: yes
+
+- name: Remove apt rotate logs
+  file:
+    path: /etc/logrotate.d/apt
+    state: absent
+
+- name: Log rotate logs
+  template:
+    src: "logRotate.j2"
+    dest: "/etc/logrotate.d/logs"

@@ -1,0 +1,11 @@
+- import_tasks: packages.yml
+  when: install_packages
+
+- import_tasks: miscellaneous.yml
+  when: configure_miscellaneous
+
+- import_tasks: ssh.yml
+  when: configure_ssh
+
+- import_tasks: k3s.yml
+  when: install_kubernetes

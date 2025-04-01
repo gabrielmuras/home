@@ -1,0 +1,13 @@
+- hosts: shire
+  become: yes
+  become_method: su
+  vars:
+    install_packages: true
+    configure_miscellaneous: true
+    configure_ssh: true
+    install_kubernetes: true
+    username: ""
+    hostname: "shire-node-01"
+    ssh_key: ""
+  roles:
+    - home-server

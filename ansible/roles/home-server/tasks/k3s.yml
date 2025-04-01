@@ -1,0 +1,3 @@
+- name: Install k3s without Traefik
+  become: yes
+  shell: curl -sfL https://get.k3s.io | sh -s - --data-dir /kube --disable traefik --disable-helm-controller

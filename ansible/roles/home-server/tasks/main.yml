@@ -1,11 +1,14 @@
 - import_tasks: packages.yml
-  when: install_packages
+  when: install_packages | default(false)
 
 - import_tasks: miscellaneous.yml
-  when: configure_miscellaneous
+  when: configure_miscellaneous | default(false)
 
 - import_tasks: ssh.yml
-  when: configure_ssh
+  when: configure_ssh | default(false)
 
 - import_tasks: k3s.yml
-  when: install_kubernetes
+  when: install_kubernetes | default(false)
+
+- import_tasks: argocd.yml
+  when: install_argocd | default(false)

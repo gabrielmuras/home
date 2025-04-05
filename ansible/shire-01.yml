@@ -11,3 +11,10 @@
     ssh_key: ""
   roles:
     - home-server
+
+- hosts: local
+  vars:
+    install_argocd: true
+    argocd_chart_version: 7.8.23
+  roles:
+    - home-server

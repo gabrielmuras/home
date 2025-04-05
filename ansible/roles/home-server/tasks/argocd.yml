@@ -1,0 +1,12 @@
+- name: Add argocd chart
+  kubernetes.core.helm_repository:
+    name: argo
+    repo_url: "https://argoproj.github.io/argo-helm"
+
+- name: Deploy argocd
+  kubernetes.core.helm:
+    name: argocd
+    namespace: argocd
+    chart_ref: argo/argo-cd
+    chart_version: {{ argocd_chart_version }}
+    values: "{{ lookup('template', 'values/argocd/values.yml') | from_yaml }}"

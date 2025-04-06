@@ -1,0 +1,23 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: core-applications
+  namespace: argocd
+  labels:
+    name: core-appliactions
+spec:
+  project: core-applications
+  source:
+    repoURL: https://github.com/gabrielmuras/home.git
+    targetRevision: HEAD
+    path: /core-applications
+  destination:
+    name: local
+  syncPolicy:
+    syncOptions:   
+    - CreateNamespace=false
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true
+    - RespectIgnoreDifferences=true
+    - ApplyOutOfSyncOnly=true

@@ -1,0 +1,30 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metal-lb
+  namespace: argocd
+spec:
+  project: core-applications
+  sources:
+    - repoURL: "https://metallb.github.io/metallb"
+      targetRevision: "v0.14.9"
+      chart: metallb
+      helm:
+        releaseName: metallb
+  ignoreDifferences:
+    - group: "apiextensions.k8s.io"
+      kind: CustomResourceDefinition
+      name: bgppeers.metallb.io
+      jsonPointers:
+      - /spec/conversion/webhook/clientConfig/caBundle
+    - group: "apiextensions.k8s.io"
+      kind: CustomResourceDefinition
+      name: addresspools.metallb.io
+      jsonPointers:
+      - /spec/conversion/webhook/clientConfig/caBundle
+  destination:
+    name: local
+    namespace: kube-system
+  syncPolicy: 
+    automated: {}

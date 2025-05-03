@@ -5,13 +5,15 @@ metadata:
   name: core-applications
   namespace: argocd
   labels:
-    name: core-appliactions
+    name: core-applications
 spec:
-  project: core-applications
+  project: default
   source:
     repoURL: https://github.com/gabrielmuras/home.git
     targetRevision: HEAD
-    path: /core-applications
+    path: argocd/applications
+    directory:
+      recurse: true
   destination:
     name: local
   syncPolicy:

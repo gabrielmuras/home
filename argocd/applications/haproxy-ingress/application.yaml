@@ -1,0 +1,24 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: haproxy-ingress
+  namespace: argocd
+spec:
+  project: core-applications
+  sources:
+    - repoURL: "https://haproxytech.github.io/helm-charts"
+      targetRevision: "1.44.3"
+      chart: kubernetes-ingress
+      helm:
+        releaseName: haproxy-ingress
+        valueFiles:
+          - $values/argocd/shire-cluster/core-applications/haproxy-ingress/values.yaml
+    - repoURL: "https://github.com/gabrielmuras/home.git"
+      ref: values      
+      targetRevision: HEAD
+  destination:
+    name: local
+    namespace: kube-system
+  syncPolicy: 
+    automated: {}

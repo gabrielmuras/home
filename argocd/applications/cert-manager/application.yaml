@@ -1,0 +1,25 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+spec:
+  project: core-applications
+  sources:
+    - repoURL: "https://charts.jetstack.io"
+      targetRevision: "v1.17.2"
+      chart: cert-manager
+      helm:
+        releaseName: cert-manager
+        valueFiles:
+          - $values/argocd/shire-cluster/core-applications/cert-manager/values.yaml
+    - repoURL: "https://github.com/gabrielmuras/home.git"
+      ref: values      
+      targetRevision: HEAD
+  destination:
+    name: local
+    namespace: cert-manager
+  syncPolicy: 
+    syncOptions:
+    - CreateNamespace=true

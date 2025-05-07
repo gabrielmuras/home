@@ -1,0 +1,20 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-rollouts
+  namespace: argocd
+spec:
+  project: core-applications
+  sources:
+    - repoURL: "https://argoproj.github.io/argo-helm"
+      targetRevision: "2.39.5"
+      chart: argo-rollouts
+      helm:
+        releaseName: argo-rollouts
+  destination:
+    name: local
+    namespace: argo-rollouts
+  syncPolicy: 
+    syncOptions:
+    - CreateNamespace=true

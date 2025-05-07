@@ -14,4 +14,4 @@
 - name: Deploy core app of apps
   kubernetes.core.k8s:
     state: present
-    definition: "{{ lookup('file', 'values/core-applications/core-applications.yml') | from_yaml }}"
+    definition: "{{ lookup('file', 'argocd/app-of-apps.yml') | from_yaml }}"

@@ -11,7 +11,7 @@ spec:
       targetRevision: "1.44.3"
       chart: kubernetes-ingress
       helm:
-        releaseName: haproxy-ingress
+        releaseName: shire
         valueFiles:
           - $values/argocd/shire-cluster/core-applications/haproxy-ingress/values.yaml
     - repoURL: "https://github.com/gabrielmuras/home.git"
@@ -19,6 +19,6 @@ spec:
       targetRevision: HEAD
   destination:
     name: local
-    namespace: kube-system
+    namespace: haproxy-ingress
   syncPolicy: 
     automated: {}

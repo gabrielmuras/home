@@ -13,7 +13,7 @@ spec:
       helm:
         releaseName: metallb
     - repoURL: "https://github.com/gabrielmuras/home.git"
-      path: argocd/shire-cluster/core-applications/metal-lb
+      path: argocd/shire-cluster/core-applications/kube-system/metal-lb
       targetRevision: HEAD
   ignoreDifferences:
     - group: "apiextensions.k8s.io"

@@ -6,3 +6,6 @@ controller:
     type: LoadBalancer
     annotations: 
       metallb.universe.tf/address-pool: shire-pool
+  
+  config:
+    ssl-redirect-port: "443"

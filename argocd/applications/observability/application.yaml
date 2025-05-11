@@ -11,7 +11,7 @@ spec:
       targetRevision: "0.18.0"
       chart: victoria-metrics-single
       helm:
-        releaseName: victoria-metrics
+        releaseName: shire
         valueFiles:
           - $values/argocd/shire-cluster/core-applications/observability/victoria-metrics/values.yaml
     - repoURL: "https://github.com/gabrielmuras/home.git"

@@ -1,2 +1,8 @@
 server:
   retentionPeriod: 5d
+
+scrape:
+  enabled: true
+  config:
+    global:
+      scrape_interval: 60s

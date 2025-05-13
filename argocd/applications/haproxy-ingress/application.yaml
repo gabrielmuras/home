@@ -7,9 +7,9 @@ metadata:
 spec:
   project: core-applications
   sources:
-    - repoURL: "https://haproxytech.github.io/helm-charts"
+    - repoURL: "https://haproxy-ingress.github.io/charts"
       targetRevision: "1.44.3"
-      chart: kubernetes-ingress
+      chart: haproxy-ingress
       helm:
         releaseName: shire
         valueFiles:

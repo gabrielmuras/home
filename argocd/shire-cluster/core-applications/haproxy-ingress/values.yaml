@@ -1,6 +1,8 @@
 
 controller:
   replicaCount: 1
+  ingressClassResource:
+    enabled: true
 
   service:
     type: LoadBalancer
